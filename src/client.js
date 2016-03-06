@@ -1,12 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './containers/App';
+import configureStore from './stores/store';
 
-const appEl = document.getElementById('app');
+var store = configureStore();
+console.log(store.getState());
 
-class MyClass extends React.Component {
-	render(){
-		return (<h1>Hello</h1>)
-	}
-}
-
-ReactDOM.render(<MyClass/>, appEl);
+render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('app')
+);
