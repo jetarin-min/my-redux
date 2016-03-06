@@ -10,8 +10,14 @@ export default class InsertForm extends Component {
         console.log("Form submit");
         this.props.onSubmit({
             name: this.refs.nameInput.value,
-            price: this.refs.priceInput.value 
+            price: this.refs.priceInput.value,
+            code: this.refs.codeInput.value,
+            _id: Math.floor(Date.now() / 1000)
         });
+        this.refs.nameInput.value = "";
+        this.refs.priceInput.value = "";
+        this.refs.codeInput.value = "";
+
     }
     render() {
 
@@ -19,6 +25,8 @@ export default class InsertForm extends Component {
             <form onSubmit={this.handleSubmit}>
                 <p>Name</p>
                 <input ref="nameInput" type="text"/><br/>
+                <p>Code</p>
+                <input ref="codeInput" type="text"/><br/>
                 <p>Price</p>
                 <input ref="priceInput" type="text"/><br/>
                 <button type="submit">Add</button>

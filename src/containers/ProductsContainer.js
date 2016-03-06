@@ -1,14 +1,32 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as actions from '../actions/product'
+//import * as actions from '../actions/product'
+import { actions } from '../actions/product'
 import InsertForm from '../components/insert-form'
+import ListView from '../components/list-view'
 
 class ProductsContainer extends React.Component {
+	constructor(){
+		super();
+		this.onSubmit = this.onSubmit.bind(this);
+		this.handleClick = this.handleClick.bind(this);
+	}
+	handleClick(){
+		console.log("test btn clicked!!!");
+		this.props.getProducts();
+
+	}
 	onSubmit(product) {
 		console.log("Container say:");
 		console.log(product);
-		this.props.actions.addProduct(product);
+		//this.props.actions.addProduct(product);
+		console.log("Props:");
+		console.log(this.props);
+		//console.log(actions);
+		console.log("ACTIONS");
+		console.log(actions);
+		this.props.addProduct(product);
 	}
 	render() {
 	    return (
@@ -16,6 +34,9 @@ class ProductsContainer extends React.Component {
 				<h3>This is Product box</h3>
 				<InsertForm onSubmit={this.onSubmit}/>
 				<h3>This is Products list</h3>
+				<ListView products={this.props.products}/>
+				<br/>
+				<button onClick={this.handleClick}>Test</button>
 			</div>
 	    )
 	}
@@ -29,7 +50,9 @@ function mapStateToProps(state) {
 
 var mapDispatchToProps = function (dispatch) {
 	return {
-		actions: bindActionCreators(actions, dispatch)
+		//actions: bindActionCreators(actions, dispatch)
+		addProduct: (product) => dispatch(actions.addProduct(product)),
+		getProducts: () => dispatch(actions.getProducts())
 	};
 }
 

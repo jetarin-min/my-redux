@@ -5,7 +5,15 @@ export default function productsReducer(state=[], action) {
 			...state,
 			action.product
 		]
-	} else {
+	}
+	else if (action.type=='GET_PRODUCTS_SUCCESS'){
+		console.log("DATA:", action.result.data);
+		return [
+			...state,
+			...action.result.data
+		]
+	}
+	else {
 		return state;
 	}
 }
