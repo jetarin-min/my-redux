@@ -8,5 +8,5 @@ export default function configureStore() {
 	/*
 	const finalCreateStore = applyMiddleware(promiseMiddleware)(createStore)
 	return finalCreateStore(reducers)
-	/*
+	*/
 }
