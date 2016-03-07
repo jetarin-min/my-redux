@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { actions } from '../actions/product'
 import InsertForm from '../components/insert-form'
 import ListView from '../components/list-view'
+import { Link } from 'react-router'
+
 
 class ProductsContainer extends React.Component {
 	constructor(){
@@ -31,6 +33,10 @@ class ProductsContainer extends React.Component {
 	render() {
 	    return (
 			<div>
+				<h2>My App</h2>
+	        	<Link to={"newfeed"}>New Feed</Link> {" "}|{" "}
+	        	<Link to={"product"}>Product</Link>
+	        	<hr/>
 				<h3>This is Product box</h3>
 				<InsertForm onSubmit={this.onSubmit}/>
 				<h3>This is Products list</h3>
